@@ -1,7 +1,41 @@
 import React from "react";
+import { Link } from "react-router";
 
-const ModelCard = () => {
-  return <div></div>;
+const ModelCard = ({ model }) => {
+  return (
+    <div className=" hover:scale-105 transition ease-in-out">
+      <div className="card bg-base-100 shadow-sm">
+        <figure className="px-10 pt-10">
+          <img src={model.image} alt="" className="rounded-xl md:h-[200px]" />
+        </figure>
+        <div className="card-body ">
+          <h2 className="text-2xl font-bold text-center">{model.name}</h2>
+          <div className="flex justify-around my-4">
+            <div className="">
+              {/* <p>Framework:</p> */}
+              <div className="badge badge-soft badge-primary">
+                {model.framework}
+              </div>
+            </div>
+            <div className="">
+              {/* <p>Use Case:</p> */}
+              <div className="badge badge-soft badge-secondary">
+                {model.useCase}
+              </div>
+            </div>
+          </div>
+          <div className="w-full">
+            <Link
+              to={`/model-details/${model._id}`}
+              className="btn btn-primary w-full"
+            >
+              View Details
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ModelCard;

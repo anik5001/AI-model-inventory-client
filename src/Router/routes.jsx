@@ -5,6 +5,7 @@ import AllModels from "../pages/AllModels";
 import AddModel from "../pages/AddModel";
 import Login from "../pages/LoginPage/Login";
 import Register from "../pages/Register/Register";
+import DetailsPage from "../pages/DetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -18,10 +19,15 @@ const router = createBrowserRouter([
       {
         path: "/all-models",
         element: <AllModels></AllModels>,
+        loader: () => fetch("https://ai-model-inventory.vercel.app/models"),
       },
       {
         path: "/add-model",
         element: <AddModel></AddModel>,
+      },
+      {
+        path: "/model-details/:id",
+        element: <DetailsPage></DetailsPage>,
       },
       {
         path: "/auth-register",

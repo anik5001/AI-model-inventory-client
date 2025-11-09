@@ -1,2 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+.navbar .active {
+  /* text-decoration: underline; */
+  color: blue;
+  border: 1px solid blue;
+}

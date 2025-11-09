@@ -17,9 +17,9 @@ const Footer = () => {
               src={logoImg}
               alt=""
             />
-            <a className=" text-3xl">
+            <p className=" text-3xl">
               AI <span className="text-blue-600">Nexus</span>
-            </a>
+            </p>
           </Link>
         </aside>
         <p className="text-center">

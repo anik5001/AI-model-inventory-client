@@ -1,7 +1,29 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { use } from "react";
+import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../../context/AuthContext";
 
 const Register = () => {
+  const { createUserFun } = use(AuthContext);
+  const navigate = useNavigate();
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photoURL = form.photoURL.value;
+    const password = form.password.value;
+
+    console.log(name, email, password, photoURL);
+
+    createUserFun(email, password)
+      .then(() => {
+        alert("successful signup");
+        navigate("/");
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
   return (
     <div>
       <div className="hero bg-base-200 ">
@@ -11,15 +33,43 @@ const Register = () => {
               <h1 className="text-2xl font-bold text-center">
                 Register for AI Model Inventory Manager
               </h1>
-              <form>
+              <form onSubmit={handleRegister}>
                 <fieldset className="fieldset">
+                  {/* name */}
+                  <label className="label">Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    className="input"
+                    placeholder="Name"
+                    required
+                  />
+                  {/* email */}
                   <label className="label">Email</label>
-                  <input type="email" className="input" placeholder="Email" />
+                  <input
+                    type="email"
+                    name="email"
+                    className="input"
+                    placeholder="Email"
+                    required
+                  />
+                  {/* photoURL */}
+                  <label className="label">PhotoURL</label>
+                  <input
+                    type="text"
+                    name="photoURL"
+                    className="input"
+                    placeholder="PhotoURL"
+                    required
+                  />
+                  {/* password */}
                   <label className="label">Password</label>
                   <input
                     type="password"
+                    name="password"
                     className="input"
                     placeholder="Password"
+                    required
                   />
 
                   <button className="btn btn-neutral mt-4">Register</button>

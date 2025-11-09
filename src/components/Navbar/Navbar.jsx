@@ -3,7 +3,17 @@ import { Link, NavLink } from "react-router";
 import logoImg from "../../assets/logoAI.jpg";
 import { AuthContext } from "../../context/AuthContext";
 const Navbar = () => {
-  const { user, loading } = use(AuthContext);
+  const { user, loading, signOutFun } = use(AuthContext);
+
+  const handleSignOut = () => {
+    signOutFun()
+      .then(() => {
+        alert("user signout successful");
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
   if (loading) return <div className="text-center">loading...</div>;
   return (
     <div className="navbar bg-base-100  max-w-7xl mx-auto">
@@ -97,7 +107,9 @@ const Navbar = () => {
                 <a>Settings</a>
               </li>
               <li>
-                <button className="btn btn-primary">Logout</button>
+                <button onClick={handleSignOut} className="btn btn-primary">
+                  Logout
+                </button>
               </li>
             </ul>
           </div>

@@ -12,6 +12,7 @@ const Login = () => {
       })
       .catch((e) => {
         console.log(e.code);
+        alert(e.message);
       });
   };
   return (

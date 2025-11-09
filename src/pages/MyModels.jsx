@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import MyModelCard from "../components/MyModelCard/MyModelCard";
 
-import ModelCard from "../components/ModelCard/ModelCard";
-
-const AllModels = () => {
+const MyModels = () => {
+  const { user } = use(AuthContext);
   const [models, setModel] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://ai-model-inventory.vercel.app/models")
+    fetch(`http://localhost:3000/my-models?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -17,21 +18,23 @@ const AllModels = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [user]);
 
   return loading ? (
     <div className="text-center">loading....</div>
   ) : (
     <div>
-      <h1 className="text-center text-2xl font-bold mb-2">All Models </h1>
+      <h1 className="text-center text-2xl font-bold mb-2">
+        My Models : <span className="text-blue-700">{models.length}</span>
+      </h1>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 md:gap-10">
         {models.map((model) => (
-          <ModelCard key={model._id} model={model}></ModelCard>
+          <MyModelCard key={model._id} model={model}></MyModelCard>
         ))}
       </div>
     </div>
   );
 };
 
-export default AllModels;
+export default MyModels;

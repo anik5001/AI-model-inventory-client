@@ -92,23 +92,24 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
             >
-              <div>
+              <div className=" pb-3 border-b border-b-gray-200">
                 {/* <img src={user.photoURL} alt="" /> */}
-                <p>{user.displayName}</p>
-                <p>{user.email}</p>
+                <p className="text-sm font-bold text-center">
+                  {user.displayName}
+                </p>
+                <p className="text-xs text-center">{user.email}</p>
               </div>
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
+              <li className="mt-3 font-bold ">
+                <NavLink to="/my-purchased-model" className="justify-between">
+                  My Purchased Model
+                </NavLink>
               </li>
-              <li>
-                <a>Settings</a>
+              <li className="font-bold my-2">
+                <NavLink to="/my-models">My Model</NavLink>
               </li>
-              <li>
+              <li className="mt-3">
                 <button onClick={handleSignOut} className="btn btn-primary">
                   Logout
                 </button>

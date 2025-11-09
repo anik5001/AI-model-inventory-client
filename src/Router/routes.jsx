@@ -8,6 +8,8 @@ import Register from "../pages/Register/Register";
 import DetailsPage from "../pages/DetailsPage";
 import PrivateRouter from "./PrivateRouter";
 import UpdateModelPage from "../pages/UpdateModelPage";
+import MyModels from "../pages/MyModels";
+import MyPurchasedModel from "../pages/MyPurchasedModel";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +27,7 @@ const router = createBrowserRouter([
             <AllModels></AllModels>
           </PrivateRouter>
         ),
-        loader: () => fetch("https://ai-model-inventory.vercel.app/models"),
+        // loader: () => fetch("https://ai-model-inventory.vercel.app/models"),
       },
       {
         path: "/add-model",
@@ -48,6 +50,22 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <UpdateModelPage></UpdateModelPage>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/my-models",
+        element: (
+          <PrivateRouter>
+            <MyModels></MyModels>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/my-purchased-model",
+        element: (
+          <PrivateRouter>
+            <MyPurchasedModel></MyPurchasedModel>
           </PrivateRouter>
         ),
       },

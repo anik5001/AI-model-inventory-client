@@ -36,18 +36,18 @@ const DetailsPage = () => {
             </h1>
 
             <div className="flex flex-wrap gap-3">
-              <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">
+              <div className="badge badge-lg badge-outline badge-primary font-medium">
                 {model.framework}
               </div>
 
-              <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">
+              <div className="badge badge-lg badge-outline badge-secondary font-medium">
                 {model.useCase}
               </div>
-              <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">
+              <div className="badge badge-lg badge-outline badge-info font-medium">
                 {model.dataset}
               </div>
 
-              <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">
+              <div className="badge badge-lg badge-outline badge-success font-medium">
                 Purchased:{model.purchased}
               </div>
             </div>
@@ -56,7 +56,7 @@ const DetailsPage = () => {
               {model.description}
             </p>
 
-            <div className="flex gap-3 mt-6">
+            <div className="flex gap-1 mt-6">
               <button
                 // onClick={handlePurchase}
                 className="btn btn-primary rounded-full"
@@ -64,17 +64,17 @@ const DetailsPage = () => {
                 Purchase Model
               </button>
               {user.email === model.createdBy && (
-                <div>
+                <div className="flex gap-1">
                   <Link
                     to={`/update-model/${model._id}`}
-                    className="btn btn-primary rounded-full bg-linear-to-r from-pink-500 to-red-600 text-white border-0 hover:from-pink-600 hover:to-red-700"
+                    className="btn  btn-info rounded-full "
                   >
                     Edit Model
                   </Link>
 
                   <button
                     // onClick={handleDlete}
-                    className="btn btn-outline rounded-full border-gray-300 hover:border-pink-500 hover:text-pink-600"
+                    className="btn btn-secondary rounded-full "
                   >
                     Delete
                   </button>

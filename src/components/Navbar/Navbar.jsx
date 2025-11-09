@@ -3,7 +3,8 @@ import { Link, NavLink } from "react-router";
 import logoImg from "../../assets/logoAI.jpg";
 import { AuthContext } from "../../context/AuthContext";
 const Navbar = () => {
-  const { user } = use(AuthContext);
+  const { user, loading } = use(AuthContext);
+  if (loading) return <div className="text-center">loading...</div>;
   return (
     <div className="navbar bg-base-100  max-w-7xl mx-auto">
       <div className="navbar-start">
@@ -73,16 +74,19 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                />
+                <img src={user.photoURL} alt="" />
+                {/* <img alt="Tailwind CSS Navbar component" src={user.photoURL} /> */}
               </div>
             </div>
             <ul
               tabIndex="-1"
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
+              <div>
+                <img src={user.photoURL} alt="" />
+                <p>{user.displayName}</p>
+                <p>{user.email}</p>
+              </div>
               <li>
                 <a className="justify-between">
                   Profile
@@ -93,7 +97,7 @@ const Navbar = () => {
                 <a>Settings</a>
               </li>
               <li>
-                <a>Logout</a>
+                <button className="btn btn-primary">Logout</button>
               </li>
             </ul>
           </div>

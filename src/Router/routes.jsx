@@ -6,6 +6,7 @@ import AddModel from "../pages/AddModel";
 import Login from "../pages/LoginPage/Login";
 import Register from "../pages/Register/Register";
 import DetailsPage from "../pages/DetailsPage";
+import PrivateRouter from "./PrivateRouter";
 
 const router = createBrowserRouter([
   {
@@ -18,16 +19,28 @@ const router = createBrowserRouter([
       },
       {
         path: "/all-models",
-        element: <AllModels></AllModels>,
+        element: (
+          <PrivateRouter>
+            <AllModels></AllModels>
+          </PrivateRouter>
+        ),
         loader: () => fetch("https://ai-model-inventory.vercel.app/models"),
       },
       {
         path: "/add-model",
-        element: <AddModel></AddModel>,
+        element: (
+          <PrivateRouter>
+            <AddModel></AddModel>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/model-details/:id",
-        element: <DetailsPage></DetailsPage>,
+        element: (
+          <PrivateRouter>
+            <DetailsPage></DetailsPage>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/auth-register",

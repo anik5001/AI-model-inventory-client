@@ -93,7 +93,7 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <div>
-                <img src={user.photoURL} alt="" />
+                {/* <img src={user.photoURL} alt="" /> */}
                 <p>{user.displayName}</p>
                 <p>{user.email}</p>
               </div>

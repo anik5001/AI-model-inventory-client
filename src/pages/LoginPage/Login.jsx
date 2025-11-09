@@ -1,14 +1,35 @@
 import React, { use } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
-  const { googleWithSigninFun } = use(AuthContext);
+  const { googleWithSigninFun, signInUserFuc, setUser } = use(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLoginUser = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    console.log(email, password);
+    signInUserFuc(email, password)
+      .then(() => {
+        alert("login successful");
+        navigate("/");
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
 
   const handleGoogleSign = () => {
     googleWithSigninFun()
       .then((result) => {
-        console.log(result);
+        // console.log(result);
+        setUser(result.user);
+        navigate("/");
       })
       .catch((e) => {
         console.log(e.code);
@@ -24,15 +45,24 @@ const Login = () => {
               <h1 className="text-2xl font-bold text-center">
                 Login to AI Model Inventory Manager
               </h1>
-              <form>
+              <form onSubmit={handleLoginUser}>
                 <fieldset className="fieldset">
                   <label className="label">Email</label>
-                  <input type="email" className="input" placeholder="Email" />
+                  <input
+                    type="email"
+                    name="email"
+                    className="input"
+                    placeholder="Email"
+                    required
+                  />
+
                   <label className="label">Password</label>
                   <input
                     type="password"
+                    name="password"
                     className="input"
                     placeholder="Password"
+                    required
                   />
                   <div>
                     <a className="link link-hover">Forgot password?</a>

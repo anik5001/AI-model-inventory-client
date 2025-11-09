@@ -3,25 +3,48 @@ import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 const Register = () => {
-  const { createUserFun } = use(AuthContext);
+  const { createUserFun, updatedProfileFun, setUser, googleWithSigninFun } =
+    use(AuthContext);
   const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
-    const name = form.name.value;
+    const displayName = form.name.value;
     const email = form.email.value;
     const photoURL = form.photoURL.value;
     const password = form.password.value;
 
-    console.log(name, email, password, photoURL);
+    console.log(displayName, email, password, photoURL);
 
     createUserFun(email, password)
-      .then(() => {
-        alert("successful signup");
-        navigate("/");
+      .then((result) => {
+        updatedProfileFun(displayName, photoURL)
+          .then(() => {
+            alert("successful signup");
+            // console.log(result.user);
+            setUser(result.user);
+            navigate("/");
+          })
+          .catch((e) => {
+            console.log(e.message);
+          });
       })
       .catch((e) => {
         console.log(e.message);
+      });
+  };
+
+  const handleGoogleSign = () => {
+    googleWithSigninFun()
+      .then((result) => {
+        // console.log(result);
+        alert("successful sign in");
+        setUser(result.user);
+        navigate("/");
+      })
+      .catch((e) => {
+        console.log(e.code);
+        alert(e.message);
       });
   };
   return (
@@ -81,7 +104,10 @@ const Register = () => {
                 <p className="border-b"></p>
               </div>
               {/* Google */}
-              <button className="btn bg-white text-black border-[#e5e5e5]">
+              <button
+                onClick={handleGoogleSign}
+                className="btn bg-white text-black border-[#e5e5e5]"
+              >
                 <svg
                   aria-label="Google logo"
                   width="16"

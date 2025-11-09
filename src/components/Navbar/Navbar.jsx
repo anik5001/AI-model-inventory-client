@@ -14,7 +14,7 @@ const Navbar = () => {
         console.log(e.message);
       });
   };
-  if (loading) return <div className="text-center">loading...</div>;
+
   return (
     <div className="navbar bg-base-100  max-w-7xl mx-auto">
       <div className="navbar-start">
@@ -76,7 +76,9 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        {user ? (
+        {loading ? (
+          <div>Loading...</div>
+        ) : user ? (
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}

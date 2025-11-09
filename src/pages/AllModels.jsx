@@ -1,11 +1,17 @@
-import React from "react";
-import { useLoaderData } from "react-router";
+import React, { use } from "react";
+import { useLoaderData, useNavigation } from "react-router";
 import ModelCard from "../components/ModelCard/ModelCard";
+import { AuthContext } from "../context/AuthContext";
 
 const AllModels = () => {
+  const { loading } = use(AuthContext);
   const data = useLoaderData();
+  const navigation = useNavigation();
   console.log(data);
-  return (
+  if (loading) return <div>loading.....</div>;
+  return navigation.state === "loading" ? (
+    <div>loading....</div>
+  ) : (
     <div>
       <h1 className="text-center text-2xl font-bold mb-2">All Models </h1>
 

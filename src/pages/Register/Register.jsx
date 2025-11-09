@@ -1,11 +1,12 @@
 import React, { use } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 const Register = () => {
   const { createUserFun, updatedProfileFun, setUser, googleWithSigninFun } =
     use(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -23,7 +24,7 @@ const Register = () => {
             alert("successful signup");
             // console.log(result.user);
             setUser(result.user);
-            navigate("/");
+            navigate(location?.state || "/");
           })
           .catch((e) => {
             console.log(e.message);
@@ -40,7 +41,7 @@ const Register = () => {
         // console.log(result);
         alert("successful sign in");
         setUser(result.user);
-        navigate("/");
+        navigate(location?.state || "/");
       })
       .catch((e) => {
         console.log(e.code);

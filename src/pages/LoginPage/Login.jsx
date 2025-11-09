@@ -1,11 +1,11 @@
 import React, { use } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
   const { googleWithSigninFun, signInUserFuc, setUser } = use(AuthContext);
   const navigate = useNavigate();
-
+  const location = useLocation();
   const handleLoginUser = (e) => {
     e.preventDefault();
 
@@ -17,7 +17,7 @@ const Login = () => {
     signInUserFuc(email, password)
       .then(() => {
         alert("login successful");
-        navigate("/");
+        navigate(location?.state || "/");
       })
       .catch((e) => {
         console.log(e.message);
@@ -29,7 +29,7 @@ const Login = () => {
       .then((result) => {
         // console.log(result);
         setUser(result.user);
-        navigate("/");
+        navigate(location?.state || "/");
       })
       .catch((e) => {
         console.log(e.code);

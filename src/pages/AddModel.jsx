@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 const AddModel = () => {
   const { user } = use(AuthContext);
   const navigate = useNavigate();
+
   const handleAddModel = (e) => {
     e.preventDefault();
     const modelData = {

@@ -7,6 +7,7 @@ import Login from "../pages/LoginPage/Login";
 import Register from "../pages/Register/Register";
 import DetailsPage from "../pages/DetailsPage";
 import PrivateRouter from "./PrivateRouter";
+import UpdateModelPage from "../pages/UpdateModelPage";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <DetailsPage></DetailsPage>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/update-model/:id",
+        element: (
+          <PrivateRouter>
+            <UpdateModelPage></UpdateModelPage>
           </PrivateRouter>
         ),
       },

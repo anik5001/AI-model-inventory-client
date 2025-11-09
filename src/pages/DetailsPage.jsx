@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 
@@ -6,17 +6,18 @@ const DetailsPage = () => {
   const { user } = use(AuthContext);
   const { id } = useParams();
   const [model, setModel] = useState({});
-  console.log(id);
-
-  fetch(`http://localhost:3000/models/${id}`)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      setModel(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  // console.log(id);
+  useEffect(() => {
+    fetch(`http://localhost:3000/models/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setModel(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div className="max-w-6xl mx-auto p-4 md:p-6 lg:p-8">
       <div className="card bg-base-100 shadow-xl border border-gray-200 rounded-2xl overflow-hidden">
@@ -57,7 +58,7 @@ const DetailsPage = () => {
 
             <div className="flex gap-3 mt-6">
               <button
-                // onClick={handleDownload}
+                // onClick={handlePurchase}
                 className="btn btn-primary rounded-full"
               >
                 Purchase Model
@@ -65,7 +66,7 @@ const DetailsPage = () => {
               {user.email === model.createdBy && (
                 <div>
                   <Link
-                    // to={`/update-model/${model._id}`}
+                    to={`/update-model/${model._id}`}
                     className="btn btn-primary rounded-full bg-linear-to-r from-pink-500 to-red-600 text-white border-0 hover:from-pink-600 hover:to-red-700"
                   >
                     Edit Model

@@ -12,7 +12,7 @@ const DetailsPage = () => {
     fetch(`http://localhost:3000/models/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         setModel(data);
       })
       .catch((err) => {
@@ -32,6 +32,33 @@ const DetailsPage = () => {
         // console.log(data);
         alert("delete successful");
         navigate("/all-models");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const handlePurchase = () => {
+    const purchasedData = {
+      modelId: model._id,
+      name: model.name,
+      framework: model.framework,
+      useCase: model.useCase,
+      createdBy: model.createdBy,
+      purchasedBy: user.email,
+      image: model.image,
+    };
+    console.log(purchasedData);
+
+    fetch(`http://localhost:3000/purchased-models/${model._id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(purchasedData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -77,7 +104,7 @@ const DetailsPage = () => {
 
             <div className="flex gap-1 mt-6">
               <button
-                // onClick={handlePurchase}
+                onClick={handlePurchase}
                 className="btn btn-primary rounded-full"
               >
                 Purchase Model

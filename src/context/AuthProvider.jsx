@@ -16,14 +16,20 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   console.log(user);
   const createUserFun = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signInUserFuc = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const updatedProfileFun = (displayName, photoURL) => {
-    return updateProfile(auth.currentUser, { displayName, photoURL });
+    setLoading(true);
+    return updateProfile(auth.currentUser, {
+      displayName: displayName,
+      photoURL: photoURL,
+    });
   };
   const googleWithSigninFun = () => {
     setLoading(true);

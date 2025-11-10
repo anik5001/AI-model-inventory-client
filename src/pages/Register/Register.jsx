@@ -3,8 +3,13 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 const Register = () => {
-  const { createUserFun, updatedProfileFun, setUser, googleWithSigninFun } =
-    use(AuthContext);
+  const {
+    createUserFun,
+    updatedProfileFun,
+    setUser,
+    googleWithSigninFun,
+    setLoading,
+  } = use(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const handleRegister = (e) => {
@@ -15,15 +20,16 @@ const Register = () => {
     const photoURL = form.photoURL.value;
     const password = form.password.value;
 
-    console.log(displayName, email, password, photoURL);
+    // console.log(displayName, email, password, photoURL);
 
     createUserFun(email, password)
       .then((result) => {
         updatedProfileFun(displayName, photoURL)
           .then(() => {
-            alert("successful signup");
             // console.log(result.user);
             setUser(result.user);
+            alert("successful signup");
+            setLoading(false);
             navigate(location?.state || "/");
           })
           .catch((e) => {

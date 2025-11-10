@@ -6,7 +6,7 @@ import Footer from "../components/Footer/Footer";
 const MainLayOut = () => {
   return (
     <div>
-      <div className="shadow-sm">
+      <div className="shadow-sm sticky top-0 z-50">
         <Navbar></Navbar>
       </div>
       <div className="max-w-7xl mx-auto my-9 min-h-screen">

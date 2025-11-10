@@ -28,7 +28,23 @@ const AllModels = () => {
     fetch(`http://localhost:3000/search?search=${searchText}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
+        setModel(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const handleFilterByFramework = (value) => {
+    // e.preventDefault();
+    const searchText = value;
+    console.log(searchText);
+    setLoading(true);
+    fetch(`http://localhost:3000/filter?framework=${searchText}`)
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
         setModel(data);
         setLoading(false);
       })
@@ -41,11 +57,11 @@ const AllModels = () => {
     <CardStyleLoading></CardStyleLoading>
   ) : (
     <div>
-      <h2 className="text-3xl md:text-4xl font-bold text-blue-700 md:mb-7 text-center">
+      <h2 className="text-3xl md:text-4xl font-bold text-blue-700 mb-4 md:mb-7 text-center">
         All Models{" "}
       </h2>
       {/* search */}
-      <div className="flex justify-center mb-10">
+      <div className="flex justify-around items-center gap-1 md:mb-10">
         <div></div>
         <div>
           <form onSubmit={handleSearch} className="flex gap-2">
@@ -73,13 +89,30 @@ const AllModels = () => {
             </button>
           </form>
         </div>
-        <div></div>
+        <div>
+          <select
+            onChange={(e) => handleFilterByFramework(e.target.value)}
+            name="framework"
+            defaultValue=""
+            className="select select-info"
+          >
+            <option value="" disabled>
+              Pick a Framework
+            </option>
+            <option value="TensorFlow">TensorFlow</option>
+            <option value="PyTorch">PyTorch</option>
+          </select>
+        </div>
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 md:gap-10">
-        {models.map((model) => (
-          <ModelCard key={model._id} model={model}></ModelCard>
-        ))}
-      </div>
+      {models.length === 0 ? (
+        <div className="text-center font-bold ">Not Found Model!</div>
+      ) : (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 md:gap-10">
+          {models.map((model) => (
+            <ModelCard key={model._id} model={model}></ModelCard>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -10,12 +10,14 @@ import PrivateRouter from "./PrivateRouter";
 import UpdateModelPage from "../pages/UpdateModelPage";
 import MyModels from "../pages/MyModels";
 import MyPurchasedModel from "../pages/MyPurchasedModel";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayOut,
-    errorElement: <div>404 not found page!</div>,
+    errorElement: <ErrorPage></ErrorPage>,
+
     children: [
       {
         index: true,
@@ -28,6 +30,7 @@ const router = createBrowserRouter([
             <AllModels></AllModels>
           </PrivateRouter>
         ),
+
         // loader: () => fetch("https://ai-model-inventory.vercel.app/models"),
       },
       {

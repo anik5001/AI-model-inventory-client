@@ -5,7 +5,7 @@ import CardStyleLoading from "../components/Loading/CardStyleLoading";
 
 const MyPurchasedModel = () => {
   const { user } = use(AuthContext);
-  const [models, setModel] = useState({});
+  const [models, setModel] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch(

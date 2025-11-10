@@ -19,7 +19,7 @@ const slides = [
       "Share models, assign roles, and streamline your ML workflow securely.",
     cta: "Explore Features",
     image:
-      "https://images.unsplash.com/photo-1687360445028-5f32a6b7d3b9?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80",
   },
   {
     id: 3,
@@ -28,7 +28,7 @@ const slides = [
       "Monitor performance, usage trends, and version history instantly.",
     cta: "View Dashboard",
     image:
-      "https://images.unsplash.com/photo-1680458845151-6b8c773e9e48?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80",
   },
 ];
 

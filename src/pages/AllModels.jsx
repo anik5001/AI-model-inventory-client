@@ -4,7 +4,7 @@ import ModelCard from "../components/ModelCard/ModelCard";
 import CardStyleLoading from "../components/Loading/CardStyleLoading";
 
 const AllModels = () => {
-  const [models, setModel] = useState({});
+  const [models, setModel] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

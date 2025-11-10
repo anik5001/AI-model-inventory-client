@@ -53,7 +53,9 @@ const UpdateModelPage = () => {
     <div>
       <div className="card border border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
         <div className="card-body p-6 relative">
-          <h2 className="text-2xl font-bold text-center mb-6">Update Model</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-700 mb-6 text-center">
+            Update Model
+          </h2>
           <form onSubmit={handleUpdateModel} className="space-y-4">
             {/* Name Field */}
             <div>

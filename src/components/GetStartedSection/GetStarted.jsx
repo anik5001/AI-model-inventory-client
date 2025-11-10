@@ -24,7 +24,7 @@ const GetStarted = () => {
             </a>
             <a
               href="/login"
-              className="btn border border-white text-white font-semibold rounded-full px-8 py-3 hover:bg-white hover:text-blue-700 transition-all"
+              className="btn border border-white text-blue-700 font-semibold rounded-full px-8 py-3 hover:bg-white hover:text-blue-700 transition-all"
             >
               Login
             </a>

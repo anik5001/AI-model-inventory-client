@@ -13,7 +13,7 @@ const Home = () => {
       </div>
 
       {/* latest 6 ai models */}
-      <div className="my-15">
+      <div className="my-10">
         <LatestModels></LatestModels>
       </div>
       {/* About Ai Models section */}

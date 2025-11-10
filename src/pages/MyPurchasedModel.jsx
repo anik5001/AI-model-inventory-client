@@ -25,19 +25,23 @@ const MyPurchasedModel = () => {
     <CardStyleLoading></CardStyleLoading>
   ) : (
     <div>
-      <h1 className="text-center text-2xl font-bold mb-2">
+      <h2 className="text-3xl md:text-4xl font-bold text-blue-700 mb-10 text-center">
         My Purchased Models :{" "}
         <span className="text-blue-700">{models.length}</span>
-      </h1>
+      </h2>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 md:gap-10">
-        {models.map((model) => (
-          <MyPurchasedModelCard
-            key={model._id}
-            model={model}
-          ></MyPurchasedModelCard>
-        ))}
-      </div>
+      {models.length === 0 ? (
+        <div className="text-center ">You haven’t added the model yet.</div>
+      ) : (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 md:gap-10">
+          {models.map((model) => (
+            <MyPurchasedModelCard
+              key={model._id}
+              model={model}
+            ></MyPurchasedModelCard>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

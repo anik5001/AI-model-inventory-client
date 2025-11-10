@@ -21,8 +21,8 @@ const LatestModels = () => {
   }, []);
 
   return (
-    <div>
-      <h2 className="text-3xl font-bold text-center mb-10 text-blue-600">
+    <div className="">
+      <h2 className="text-3xl md:text-4xl font-bold text-blue-700 mb-10 text-center">
         Featured AI Models
       </h2>
 

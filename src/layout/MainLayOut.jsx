@@ -5,7 +5,7 @@ import Footer from "../components/Footer/Footer";
 
 const MainLayOut = () => {
   return (
-    <div>
+    <div className="bg-gray-50">
       <div className="shadow-sm sticky top-0 z-50">
         <Navbar></Navbar>
       </div>

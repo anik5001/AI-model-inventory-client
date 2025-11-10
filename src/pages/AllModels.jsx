@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import ModelCard from "../components/ModelCard/ModelCard";
+import CardStyleLoading from "../components/Loading/CardStyleLoading";
 
 const AllModels = () => {
   const [models, setModel] = useState({});
@@ -20,7 +21,7 @@ const AllModels = () => {
   }, []);
 
   return loading ? (
-    <div className="text-center">loading....</div>
+    <CardStyleLoading></CardStyleLoading>
   ) : (
     <div>
       <h1 className="text-center text-2xl font-bold mb-2">All Models </h1>

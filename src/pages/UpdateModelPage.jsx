@@ -10,7 +10,7 @@ const UpdateModelPage = () => {
   const [model, setModel] = useState({});
   // console.log(id);
   useEffect(() => {
-    fetch(`http://localhost:3000/models/${id}`)
+    fetch(`https://ai-model-inventory.vercel.app/models/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -32,7 +32,7 @@ const UpdateModelPage = () => {
     };
 
     // console.log(modelData);
-    fetch(`http://localhost:3000/update-model/${id}`, {
+    fetch(`https://ai-model-inventory.vercel.app/update-model/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

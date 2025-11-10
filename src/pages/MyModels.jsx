@@ -1,6 +1,7 @@
 import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import MyModelCard from "../components/MyModelCard/MyModelCard";
+import CardStyleLoading from "../components/Loading/CardStyleLoading";
 
 const MyModels = () => {
   const { user } = use(AuthContext);
@@ -8,7 +9,7 @@ const MyModels = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/my-models?email=${user.email}`)
+    fetch(`https://ai-model-inventory.vercel.app/my-models?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -21,7 +22,7 @@ const MyModels = () => {
   }, [user]);
 
   return loading ? (
-    <div className="text-center">loading....</div>
+    <CardStyleLoading></CardStyleLoading>
   ) : (
     <div>
       <h1 className="text-center text-2xl font-bold mb-2">

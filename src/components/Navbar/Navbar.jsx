@@ -2,6 +2,7 @@ import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import logoImg from "../../assets/logoAI.jpg";
 import { AuthContext } from "../../context/AuthContext";
+import { FadeLoader } from "react-spinners";
 const Navbar = () => {
   const { user, loading, signOutFun } = use(AuthContext);
 
@@ -77,7 +78,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {loading ? (
-          <div>Loading...</div>
+          <FadeLoader height={10} width={4} />
         ) : user ? (
           <div className="dropdown dropdown-end">
             <div

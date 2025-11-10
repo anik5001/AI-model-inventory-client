@@ -1,13 +1,16 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router";
+import SpinnerLoading from "../components/Loading/SpinnerLoading";
 
 const AddModel = () => {
   const navigate = useNavigate();
   const { user } = use(AuthContext);
+  const [loading, setLoading] = useState(false);
   const date = new Date();
   // console.log(date);
   const handleAddModel = (e) => {
+    setLoading(true);
     e.preventDefault();
     const modelData = {
       name: e.target.name.value,
@@ -22,7 +25,7 @@ const AddModel = () => {
     };
 
     console.log(modelData);
-    fetch("http://localhost:3000/models", {
+    fetch("https://ai-model-inventory.vercel.app/models", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,6 +37,7 @@ const AddModel = () => {
         // console.log(data);
         alert("add model successful");
         navigate("/all-models");
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -116,12 +120,16 @@ const AddModel = () => {
             </div>
 
             {/* Submit Button */}
-            <button
-              type="submit"
-              className="btn w-full text-white mt-6 rounded-full bg-linear-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700"
-            >
-              Add Model
-            </button>
+            {loading ? (
+              <SpinnerLoading></SpinnerLoading>
+            ) : (
+              <button
+                type="submit"
+                className="btn w-full text-white mt-6 rounded-full bg-linear-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700"
+              >
+                Add Model
+              </button>
+            )}
           </form>
         </div>
       </div>

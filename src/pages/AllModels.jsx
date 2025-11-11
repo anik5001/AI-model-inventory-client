@@ -70,7 +70,7 @@ const AllModels = () => {
         All Models{" "}
       </h2>
       {/* search */}
-      <div className="flex justify-around items-center gap-1 md:mb-10">
+      <div className=" flex  md:flex justify-around items-center gap-2 md:mb-10">
         <div></div>
         <div>
           <form onSubmit={handleSearch} className="flex gap-2">
@@ -93,7 +93,7 @@ const AllModels = () => {
               </svg>
               <input type="search" name="search" placeholder="Search" />
             </label>
-            <button className="btn btn-primary" type="submit">
+            <button className="btn btn-primary hidden md:block" type="submit">
               Search
             </button>
           </form>

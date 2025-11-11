@@ -13,16 +13,16 @@ const Home = () => {
       </div>
 
       {/* latest 6 ai models */}
-      <div className="my-10">
+      <div id="Ai-feature" className="my-10">
         <LatestModels></LatestModels>
       </div>
       {/* About Ai Models section */}
-      <div>
+      <div id="about">
         <AboutAiModelSection></AboutAiModelSection>
       </div>
       {/* Get Started Section */}
 
-      <div>
+      <div id="getStarted">
         <GetStarted></GetStarted>
       </div>
     </>

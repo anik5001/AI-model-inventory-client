@@ -5,7 +5,7 @@ const GetStarted = () => {
   return (
     <div>
       {/* ===== Static Section 2: Get Started ===== */}
-      <section className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20 px-6 md:px-16">
+      <section className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20 px-6 md:px-16 rounded-2xl">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Get Started with AI Model Inventory Manager

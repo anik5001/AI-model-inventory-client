@@ -4,7 +4,7 @@ const AboutAiModelSection = () => {
   return (
     <div>
       {/* ===== Static Section: About AI Models ===== */}
-      <section className="bg-gray-50 py-10 px-6 md:px-16">
+      <section className="bg-gray-50 py-10 px-6 md:px-16 rounded-2xl">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-blue-700 mb-6">
             About AI Models

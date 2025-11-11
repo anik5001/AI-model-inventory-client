@@ -2,10 +2,11 @@ import React from "react";
 import { Outlet } from "react-router";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
+import { Toaster } from "react-hot-toast";
 
 const MainLayOut = () => {
   return (
-    <div className="bg-gray-50">
+    <div className="">
       <div className="shadow-sm sticky top-0 z-50">
         <Navbar></Navbar>
       </div>
@@ -15,6 +16,7 @@ const MainLayOut = () => {
       <div>
         <Footer></Footer>
       </div>
+      <Toaster />
     </div>
   );
 };

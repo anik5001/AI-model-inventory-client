@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const GetStarted = () => {
   return (
@@ -16,18 +17,18 @@ const GetStarted = () => {
             your AI world smarter.
           </p>
           <div className="flex justify-center gap-4">
-            <a
-              href="/register"
-              className="btn bg-white text-blue-700 font-semibold rounded-full px-8 py-3 hover:bg-blue-100 transition-all"
+            <Link
+              to="/auth-register"
+              className="btn text-blue-700 font-semibold rounded-full px-8 py-3 hover:bg-blue-100 transition-all"
             >
               Register Now
-            </a>
-            <a
-              href="/login"
+            </Link>
+            <Link
+              to="/auth-login"
               className="btn border border-white text-blue-700 font-semibold rounded-full px-8 py-3 hover:bg-white hover:text-blue-700 transition-all"
             >
               Login
-            </a>
+            </Link>
           </div>
         </div>
       </section>

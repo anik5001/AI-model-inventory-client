@@ -1,26 +1,33 @@
 import React, { use, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { AuthContext } from "../context/AuthContext";
+import Swal from "sweetalert2";
+import { FadeLoader } from "react-spinners";
+import CircularLoading from "../components/Loading/CircularLoading";
 
 const UpdateModelPage = () => {
   const { id } = useParams();
   console.log(id);
   const navigate = useNavigate();
-  const { user } = use(AuthContext);
+  const [loading, setLoading] = useState(false);
+  const [loadingFormSubmit, setFormSubmitLoading] = useState(false);
   const [model, setModel] = useState({});
   // console.log(id);
   useEffect(() => {
+    setLoading(true);
     fetch(`https://ai-model-inventory.vercel.app/models/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setModel(data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
   const handleUpdateModel = (e) => {
+    setFormSubmitLoading(true);
     e.preventDefault();
     const modelData = {
       name: e.target.name.value,
@@ -41,15 +48,25 @@ const UpdateModelPage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        alert("Update model successful");
+        if (data.modifiedCount) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your model has been updated Successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          setFormSubmitLoading(false);
+        }
         navigate(`/model-details/${id}`);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  return (
+  return loading ? (
+    <CircularLoading></CircularLoading>
+  ) : (
     <div>
       <div className="card border border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
         <div className="card-body p-6 relative">
@@ -132,7 +149,7 @@ const UpdateModelPage = () => {
               type="submit"
               className="btn w-full text-white mt-6 rounded-full bg-linear-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700"
             >
-              Update Model
+              {loadingFormSubmit ? <FadeLoader /> : "  Update Model"}
             </button>
           </form>
         </div>

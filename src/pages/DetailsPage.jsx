@@ -2,6 +2,8 @@ import React, { use, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import CircularLoading from "../components/Loading/CircularLoading";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const DetailsPage = () => {
   const { user } = use(AuthContext);
@@ -16,7 +18,7 @@ const DetailsPage = () => {
     fetch(`https://ai-model-inventory.vercel.app/models/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setModel(data);
         setLoading(false);
       })
@@ -26,22 +28,38 @@ const DetailsPage = () => {
   }, [user, id, refetch]);
 
   const handleDeleteModel = () => {
-    fetch(`https://ai-model-inventory.vercel.app/models/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://ai-model-inventory.vercel.app/models/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount)
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your model has been deleted.",
+                icon: "success",
+              });
 
-        alert("delete successful");
-        navigate("/all-models");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+            navigate("/all-models");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
   };
   const handlePurchase = () => {
     const purchasedData = {
@@ -53,27 +71,43 @@ const DetailsPage = () => {
       purchasedBy: user.email,
       image: model.image,
     };
-    console.log(purchasedData);
-
-    fetch(
-      `https://ai-model-inventory.vercel.app/purchased-models/${model._id}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(purchasedData),
+    // console.log(purchasedData);
+    Swal.fire({
+      title: "Are you sure?",
+      // text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Model Purchase!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(
+          `https://ai-model-inventory.vercel.app/purchased-models/${model._id}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(purchasedData),
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId)
+              Swal.fire({
+                title: "Thank You!",
+                text: "Your model has been purchased successfully.",
+                icon: "success",
+              });
+            setReFetch(!refetch);
+            // console.log(data);
+          })
+          .catch((err) => {
+            toast.error(err);
+          });
       }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setReFetch(!refetch);
-        alert("successful purchased");
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    });
   };
   return loading ? (
     <CircularLoading></CircularLoading>

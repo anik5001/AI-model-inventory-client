@@ -25,7 +25,7 @@ const AllModels = () => {
     const searchText = e.target.search.value;
     // console.log(searchText);
     setLoading(true);
-    fetch(`http://localhost:3000/search?search=${searchText}`)
+    fetch(`https://ai-model-inventory.vercel.app/search?search=${searchText}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -41,7 +41,9 @@ const AllModels = () => {
     const searchText = value;
     console.log(searchText);
     setLoading(true);
-    fetch(`http://localhost:3000/filter?framework=${searchText}`)
+    fetch(
+      `https://ai-model-inventory.vercel.app/filter?framework=${searchText}`
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

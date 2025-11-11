@@ -1,6 +1,9 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
+
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const {
@@ -10,6 +13,7 @@ const Register = () => {
     googleWithSigninFun,
     setLoading,
   } = use(AuthContext);
+  const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const handleRegister = (e) => {
@@ -21,6 +25,14 @@ const Register = () => {
     const password = form.password.value;
 
     // console.log(displayName, email, password, photoURL);
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+    if (!passwordRegex.test(password)) {
+      toast.error(
+        "Password must contain an uppercase, a lowercase, and be at least 6 characters long!"
+      );
+
+      return;
+    }
 
     createUserFun(email, password)
       .then((result) => {
@@ -28,7 +40,7 @@ const Register = () => {
           .then(() => {
             // console.log(result.user);
             setUser(result.user);
-            alert("successful signup");
+            toast.success("Successful Register");
             setLoading(false);
             navigate(location?.state || "/");
           })
@@ -37,7 +49,13 @@ const Register = () => {
           });
       })
       .catch((e) => {
-        console.log(e.message);
+        if (e.code === "auth/email-already-in-use") {
+          toast.error(
+            "User already exists in the database. Please log in instead."
+          );
+        } else {
+          toast.error(e.code);
+        }
       });
   };
 
@@ -45,13 +63,13 @@ const Register = () => {
     googleWithSigninFun()
       .then((result) => {
         // console.log(result);
-        alert("successful sign in");
+        toast.success("Successful Register");
         setUser(result.user);
         navigate(location?.state || "/");
       })
       .catch((e) => {
         console.log(e.code);
-        alert(e.message);
+        toast.error(e.message);
       });
   };
   return (
@@ -92,17 +110,28 @@ const Register = () => {
                     placeholder="PhotoURL"
                     required
                   />
+
                   {/* password */}
                   <label className="label">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    className="input"
-                    placeholder="Password"
-                    required
-                  />
+                  <div className=" relative">
+                    <input
+                      name="password"
+                      type={showPass ? "text" : "password"}
+                      className="input"
+                      placeholder="Password"
+                      required
+                    />
+                    <span
+                      className="text-xl absolute top-[10px] right-[90px] cursor-pointer z-50"
+                      onClick={() => setShowPass(!showPass)}
+                    >
+                      {showPass ? <FaEye /> : <FaEyeSlash />}
+                    </span>
+                  </div>
 
-                  <button className="btn btn-neutral mt-4">Register</button>
+                  <button type="submit" className="btn btn-neutral mt-4">
+                    Register
+                  </button>
                 </fieldset>
               </form>
               <div className="flex items-center  justify-between">

@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 const SpinnerLoading = () => {
   return (
     <div>
-      
+      <FadeLoader />
     </div>
   );
 };

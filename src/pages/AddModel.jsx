@@ -1,13 +1,17 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
+import { FadeLoader } from "react-spinners";
 
 const AddModel = () => {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { user } = use(AuthContext);
   const date = new Date();
   // console.log(date);
   const handleAddModel = (e) => {
+    setLoading(true);
     e.preventDefault();
     const modelData = {
       name: e.target.name.value,
@@ -31,8 +35,16 @@ const AddModel = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        alert("add model successful");
+        if (data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your model has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        setLoading(false);
         navigate("/all-models");
       })
       .catch((err) => {
@@ -123,7 +135,7 @@ const AddModel = () => {
               type="submit"
               className="btn w-full text-white mt-6 rounded-full bg-linear-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700"
             >
-              Add Model
+              {loading ? <FadeLoader /> : "Add Model"}
             </button>
           </form>
         </div>

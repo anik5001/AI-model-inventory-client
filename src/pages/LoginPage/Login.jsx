@@ -1,9 +1,12 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { googleWithSigninFun, signInUserFuc, setUser } = use(AuthContext);
+  const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const handleLoginUser = (e) => {
@@ -16,11 +19,12 @@ const Login = () => {
     console.log(email, password);
     signInUserFuc(email, password)
       .then(() => {
-        alert("login successful");
+        toast.success("Successful login");
+
         navigate(location?.state || "/");
       })
       .catch((e) => {
-        console.log(e.message);
+        toast.error(e.message);
       });
   };
 
@@ -29,11 +33,12 @@ const Login = () => {
       .then((result) => {
         // console.log(result);
         setUser(result.user);
+        toast.success("Successful login");
         navigate(location?.state || "/");
       })
       .catch((e) => {
         console.log(e.code);
-        alert(e.message);
+        toast.error(e.message);
       });
   };
   return (
@@ -57,13 +62,21 @@ const Login = () => {
                   />
 
                   <label className="label">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    className="input"
-                    placeholder="Password"
-                    required
-                  />
+                  <div className=" relative">
+                    <input
+                      name="password"
+                      type={showPass ? "text" : "password"}
+                      className="input"
+                      placeholder="Password"
+                      required
+                    />
+                    <span
+                      className="text-xl absolute top-[10px] right-[90px] cursor-pointer z-50"
+                      onClick={() => setShowPass(!showPass)}
+                    >
+                      {showPass ? <FaEye /> : <FaEyeSlash />}
+                    </span>
+                  </div>
                   <div>
                     <a className="link link-hover">Forgot password?</a>
                   </div>

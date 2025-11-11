@@ -8,10 +8,10 @@ const LatestModels = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:3000/latest-models")
+    fetch("https://ai-model-inventory.vercel.app/latest-models")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setModel(data);
         setLoading(false);
       })

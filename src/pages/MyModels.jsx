@@ -9,7 +9,14 @@ const MyModels = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://ai-model-inventory.vercel.app/my-models?email=${user.email}`)
+    fetch(
+      `https://ai-model-inventory.vercel.app/my-models?email=${user.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${user.accessToken}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

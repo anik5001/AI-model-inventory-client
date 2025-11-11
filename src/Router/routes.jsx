@@ -25,11 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/all-models",
-        element: (
-          <PrivateRouter>
-            <AllModels></AllModels>
-          </PrivateRouter>
-        ),
+        element: <AllModels></AllModels>,
 
         // loader: () => fetch("https://ai-model-inventory.vercel.app/models"),
       },

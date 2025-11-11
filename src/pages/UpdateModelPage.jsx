@@ -6,8 +6,9 @@ import { FadeLoader } from "react-spinners";
 import CircularLoading from "../components/Loading/CircularLoading";
 
 const UpdateModelPage = () => {
+  const { user } = use(AuthContext);
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [loadingFormSubmit, setFormSubmitLoading] = useState(false);
@@ -42,6 +43,7 @@ const UpdateModelPage = () => {
     fetch(`https://ai-model-inventory.vercel.app/update-model/${id}`, {
       method: "PUT",
       headers: {
+        authorization: `Bearer ${user.accessToken}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(modelData),

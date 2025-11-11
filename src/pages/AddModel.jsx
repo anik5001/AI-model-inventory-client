@@ -29,6 +29,7 @@ const AddModel = () => {
     fetch("https://ai-model-inventory.vercel.app/models", {
       method: "POST",
       headers: {
+        authorization: `Bearer ${user.accessToken}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(modelData),

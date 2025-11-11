@@ -105,10 +105,8 @@ const AllModels = () => {
             defaultValue=""
             className="select select-info"
           >
-            <option value="" disabled>
-              Pick a Framework
-            </option>
-            <option value="All-model">All Models</option>
+            <option value="All-model">Pick a Framework</option>
+            {/* <option value="All-model">All Models</option> */}
             <option value="TensorFlow">TensorFlow</option>
             <option value="PyTorch">PyTorch</option>
           </select>

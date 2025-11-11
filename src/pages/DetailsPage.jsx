@@ -18,7 +18,11 @@ const DetailsPage = () => {
   // console.log(id);
   useEffect(() => {
     setLoading(true);
-    fetch(`https://ai-model-inventory.vercel.app/models/${id}`)
+    fetch(`https://ai-model-inventory.vercel.app/models/${id}`, {
+      headers: {
+        authorization: `Bearer ${user.accessToken}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -45,6 +49,7 @@ const DetailsPage = () => {
         fetch(`https://ai-model-inventory.vercel.app/models/${id}`, {
           method: "DELETE",
           headers: {
+            authorization: `Bearer ${user.accessToken}`,
             "Content-Type": "application/json",
           },
         })
@@ -93,6 +98,7 @@ const DetailsPage = () => {
           {
             method: "POST",
             headers: {
+              authorization: `Bearer ${user.accessToken}`,
               "Content-Type": "application/json",
             },
             body: JSON.stringify(purchasedData),

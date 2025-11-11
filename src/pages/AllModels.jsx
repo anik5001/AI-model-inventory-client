@@ -7,6 +7,7 @@ const AllModels = () => {
   const [models, setModel] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadingSearch, setLoadingSearch] = useState(false);
+  const [reFetch, setReFetch] = useState(false);
 
   useEffect(() => {
     fetch("https://ai-model-inventory.vercel.app/models")
@@ -19,7 +20,7 @@ const AllModels = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [reFetch]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -40,6 +41,11 @@ const AllModels = () => {
   const handleFilterByFramework = (value) => {
     // e.preventDefault();
     const searchText = value;
+    if (searchText === "All-model") {
+      // console.log("all-");
+      setReFetch(!reFetch);
+      return;
+    }
     // console.log(searchText);
     setLoadingSearch(true);
     fetch(
@@ -102,6 +108,7 @@ const AllModels = () => {
             <option value="" disabled>
               Pick a Framework
             </option>
+            <option value="All-model">All Models</option>
             <option value="TensorFlow">TensorFlow</option>
             <option value="PyTorch">PyTorch</option>
           </select>

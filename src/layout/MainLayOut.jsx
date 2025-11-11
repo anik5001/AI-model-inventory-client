@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 const MainLayOut = () => {
   return (
     <div className="">
-      <div className="shadow-sm sticky top-0 z-50">
+      <div className=" sticky top-0 z-50">
         <Navbar></Navbar>
       </div>
       <div className="max-w-7xl mx-auto my-9 min-h-screen">

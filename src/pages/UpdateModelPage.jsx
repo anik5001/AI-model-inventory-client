@@ -16,7 +16,11 @@ const UpdateModelPage = () => {
   // console.log(id);
   useEffect(() => {
     setLoading(true);
-    fetch(`https://ai-model-inventory.vercel.app/models/${id}`)
+    fetch(`https://ai-model-inventory.vercel.app/models/${id}`, {
+      headers: {
+        authorization: `Bearer ${user.accessToken}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -26,7 +30,7 @@ const UpdateModelPage = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [user, id]);
   const handleUpdateModel = (e) => {
     setFormSubmitLoading(true);
     e.preventDefault();

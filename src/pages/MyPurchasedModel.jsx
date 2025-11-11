@@ -15,7 +15,7 @@ const MyPurchasedModel = () => {
       .then((data) => {
         setModel(data);
         setLoading(false);
-        console.log(data);
+        // console.log(data);
       })
       .catch((err) => {
         console.log(err);

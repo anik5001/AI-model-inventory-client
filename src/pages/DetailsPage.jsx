@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import CircularLoading from "../components/Loading/CircularLoading";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { FadeLoader } from "react-spinners";
 
 const DetailsPage = () => {
   const { user } = use(AuthContext);
@@ -11,6 +12,8 @@ const DetailsPage = () => {
   const [model, setModel] = useState({});
   const [refetch, setReFetch] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [loadingActionPurchased, setLoadingActionPurchased] = useState(false);
+  const [loadingActionDelete, setLoadingActionDelete] = useState(false);
   const navigate = useNavigate();
   // console.log(id);
   useEffect(() => {
@@ -38,6 +41,7 @@ const DetailsPage = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
+        setLoadingActionDelete(true);
         fetch(`https://ai-model-inventory.vercel.app/models/${id}`, {
           method: "DELETE",
           headers: {
@@ -52,6 +56,7 @@ const DetailsPage = () => {
                 text: "Your model has been deleted.",
                 icon: "success",
               });
+            setLoadingActionDelete(false);
 
             navigate("/all-models");
           })
@@ -82,6 +87,7 @@ const DetailsPage = () => {
       confirmButtonText: "Model Purchase!",
     }).then((result) => {
       if (result.isConfirmed) {
+        setLoadingActionPurchased(true);
         fetch(
           `https://ai-model-inventory.vercel.app/purchased-models/${model._id}`,
           {
@@ -101,6 +107,7 @@ const DetailsPage = () => {
                 icon: "success",
               });
             setReFetch(!refetch);
+            setLoadingActionPurchased(false);
             // console.log(data);
           })
           .catch((err) => {
@@ -112,9 +119,9 @@ const DetailsPage = () => {
   return loading ? (
     <CircularLoading></CircularLoading>
   ) : (
-    <div className="max-w-6xl mx-auto p-4 md:p-6 lg:p-8">
+    <div className="max-w-6xl mx-auto p-2 md:p-6 lg:p-8">
       <div className="card bg-base-100 shadow-xl border border-gray-200 rounded-2xl overflow-hidden">
-        <div className="flex flex-col md:flex-row gap-8 p-6 md:p-8">
+        <div className="flex flex-col md:flex-row gap-8 p-2 md:p-8">
           <div className="shrink-0 w-full md:w-1/3">
             <img
               src={model.image}
@@ -149,12 +156,16 @@ const DetailsPage = () => {
               {model.description}
             </p>
 
-            <div className="flex gap-1 mt-6">
+            <div className="flex gap-1 justify-center md:justify-start mt-6">
               <button
                 onClick={handlePurchase}
                 className="btn btn-primary rounded-full"
               >
-                Purchase Model
+                {loadingActionPurchased ? (
+                  <FadeLoader color="#0096FF" />
+                ) : (
+                  " Purchase Model"
+                )}
               </button>
               {user.email === model.createdBy && (
                 <div className="flex gap-1">
@@ -169,7 +180,11 @@ const DetailsPage = () => {
                     onClick={handleDeleteModel}
                     className="btn btn-secondary rounded-full "
                   >
-                    Delete
+                    {loadingActionDelete ? (
+                      <FadeLoader color="#0096FF" />
+                    ) : (
+                      "Delete"
+                    )}
                   </button>
                 </div>
               )}

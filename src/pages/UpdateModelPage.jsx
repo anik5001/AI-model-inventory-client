@@ -25,7 +25,7 @@ const UpdateModelPage = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id]);
   const handleUpdateModel = (e) => {
     setFormSubmitLoading(true);
     e.preventDefault();

@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
+import { FadeLoader } from "react-spinners";
 
 const Register = () => {
   const {
@@ -14,9 +15,12 @@ const Register = () => {
     setLoading,
   } = use(AuthContext);
   const [showPass, setShowPass] = useState(false);
+  const [loadingFormSubmit, setLoadingFormSubmit] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
   const handleRegister = (e) => {
+    setLoadingFormSubmit(true);
     e.preventDefault();
     const form = e.target;
     const displayName = form.name.value;
@@ -30,7 +34,7 @@ const Register = () => {
       toast.error(
         "Password must contain an uppercase, a lowercase, and be at least 6 characters long!"
       );
-
+      setLoadingFormSubmit(false);
       return;
     }
 
@@ -42,6 +46,7 @@ const Register = () => {
             setUser(result.user);
             toast.success("Successful Register");
             setLoading(false);
+            setLoadingFormSubmit(false);
             navigate(location?.state || "/");
           })
           .catch((e) => {
@@ -130,7 +135,11 @@ const Register = () => {
                   </div>
 
                   <button type="submit" className="btn btn-neutral mt-4">
-                    Register
+                    {loadingFormSubmit ? (
+                      <FadeLoader color="#0096FF" />
+                    ) : (
+                      " Register"
+                    )}
                   </button>
                 </fieldset>
               </form>

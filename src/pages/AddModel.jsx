@@ -56,7 +56,7 @@ const AddModel = () => {
       <div className="card border border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
         <div className="card-body p-6 relative">
           <h2 className="text-3xl md:text-4xl font-bold mb-5 text-blue-700 text-center">
-            Add New Model
+            Add New AI Model
           </h2>
           <form onSubmit={handleAddModel} className="space-y-4">
             {/* Name Field */}
@@ -133,7 +133,7 @@ const AddModel = () => {
 
             <button
               type="submit"
-              className="btn w-full text-white mt-6 rounded-full bg-linear-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700"
+              className="btn w-full text-white mt-1 rounded-full bg-linear-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700"
             >
               {loading ? <FadeLoader /> : "Add Model"}
             </button>

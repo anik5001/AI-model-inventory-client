@@ -4,6 +4,10 @@ import logoImg from "../../assets/logoAI.jpg";
 import { AuthContext } from "../../context/AuthContext";
 import { FadeLoader } from "react-spinners";
 import Swal from "sweetalert2";
+import { GoHomeFill } from "react-icons/go";
+import { IoLogoModelS } from "react-icons/io";
+import { ImBoxAdd } from "react-icons/im";
+import { IoLogIn, IoLogOut } from "react-icons/io5";
 const Navbar = () => {
   const { user, loading, signOutFun } = use(AuthContext);
 
@@ -70,13 +74,25 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/">
+                {" "}
+                <GoHomeFill />
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/all-models">All Models</NavLink>
+              <NavLink to="/all-models">
+                {" "}
+                <IoLogoModelS />
+                All Models
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/add-model">Add Model</NavLink>
+              <NavLink to="/add-model">
+                {" "}
+                <ImBoxAdd />
+                Add Model
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -94,13 +110,25 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/">
+              {" "}
+              <GoHomeFill />
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/all-models">All Models</NavLink>
+            <NavLink to="/all-models">
+              {" "}
+              <IoLogoModelS />
+              All Models
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/add-model">Add Model</NavLink>
+            <NavLink to="/add-model">
+              {" "}
+              <ImBoxAdd />
+              Add Model
+            </NavLink>
           </li>
         </ul>
       </div>
@@ -140,17 +168,17 @@ const Navbar = () => {
               </li>
               <li className="mt-3">
                 <button onClick={handleSignOut} className="btn btn-primary">
-                  Logout
+                  <IoLogOut /> Logout
                 </button>
               </li>
             </ul>
           </div>
         ) : (
           <Link className="btn btn-primary" to="/auth-login">
-            Login
+            <IoLogIn /> Login
           </Link>
         )}
-        <div>
+        <div className="ml-3">
           <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}
             <input

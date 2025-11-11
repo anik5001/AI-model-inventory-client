@@ -3,15 +3,18 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
+import { FadeLoader } from "react-spinners";
 
 const Login = () => {
   const { googleWithSigninFun, signInUserFuc, setUser } = use(AuthContext);
   const [showPass, setShowPass] = useState(false);
+  const [loadingFormSubmit, setLoadingFormSubmit] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
   const handleLoginUser = (e) => {
     e.preventDefault();
-
+    setLoadingFormSubmit(true);
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
@@ -20,7 +23,7 @@ const Login = () => {
     signInUserFuc(email, password)
       .then(() => {
         toast.success("Successful login");
-
+        setLoadingFormSubmit(false);
         navigate(location?.state || "/");
       })
       .catch((e) => {
@@ -80,7 +83,13 @@ const Login = () => {
                   <div>
                     <a className="link link-hover">Forgot password?</a>
                   </div>
-                  <button className="btn btn-neutral mt-4">Login</button>
+                  <button className="btn btn-neutral mt-4">
+                    {loadingFormSubmit ? (
+                      <FadeLoader color="#0096FF" />
+                    ) : (
+                      " Login"
+                    )}
+                  </button>
                 </fieldset>
               </form>
               <div className="flex items-center  justify-between">

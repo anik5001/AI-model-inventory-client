@@ -19,7 +19,7 @@ const GetStarted = () => {
           <div className="flex justify-center gap-4">
             <Link
               to="/auth-register"
-              className="btn text-blue-700 font-semibold rounded-full px-8 py-3 hover:bg-blue-100 transition-all"
+              className="btn text-blue-700 font-semibold rounded-full px-8 py-3 border-white hover:bg-blue-100 transition-all"
             >
               Register Now
             </Link>

@@ -6,6 +6,7 @@ import CardStyleLoading from "../components/Loading/CardStyleLoading";
 const AllModels = () => {
   const [models, setModel] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadingSearch, setLoadingSearch] = useState(false);
 
   useEffect(() => {
     fetch("https://ai-model-inventory.vercel.app/models")
@@ -24,13 +25,13 @@ const AllModels = () => {
     e.preventDefault();
     const searchText = e.target.search.value;
     // console.log(searchText);
-    setLoading(true);
+    setLoadingSearch(true);
     fetch(`https://ai-model-inventory.vercel.app/search?search=${searchText}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
         setModel(data);
-        setLoading(false);
+        setLoadingSearch(false);
       })
       .catch((err) => {
         console.log(err);
@@ -39,8 +40,8 @@ const AllModels = () => {
   const handleFilterByFramework = (value) => {
     // e.preventDefault();
     const searchText = value;
-    console.log(searchText);
-    setLoading(true);
+    // console.log(searchText);
+    setLoadingSearch(true);
     fetch(
       `https://ai-model-inventory.vercel.app/filter?framework=${searchText}`
     )
@@ -48,7 +49,7 @@ const AllModels = () => {
       .then((data) => {
         // console.log(data);
         setModel(data);
-        setLoading(false);
+        setLoadingSearch(false);
       })
       .catch((err) => {
         console.log(err);
@@ -106,7 +107,9 @@ const AllModels = () => {
           </select>
         </div>
       </div>
-      {models.length === 0 ? (
+      {loadingSearch ? (
+        <CardStyleLoading></CardStyleLoading>
+      ) : models.length === 0 ? (
         <div className="text-center font-bold ">Not Found Model!</div>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 md:gap-10">

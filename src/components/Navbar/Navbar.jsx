@@ -8,6 +8,7 @@ import { GoHomeFill } from "react-icons/go";
 import { IoLogoModelS } from "react-icons/io";
 import { ImBoxAdd } from "react-icons/im";
 import { IoLogIn, IoLogOut } from "react-icons/io5";
+
 const Navbar = () => {
   const { user, loading, signOutFun } = use(AuthContext);
 

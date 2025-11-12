@@ -10,7 +10,7 @@ const MainLayOut = () => {
       <div className=" sticky top-0 z-50">
         <Navbar></Navbar>
       </div>
-      <div className="max-w-7xl mx-auto my-9 min-h-screen">
+      <div className="max-w-7xl mx-auto mt-2 md:min-h-screen">
         <Outlet></Outlet>
       </div>
       <div>

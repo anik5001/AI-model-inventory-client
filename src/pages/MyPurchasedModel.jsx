@@ -38,7 +38,7 @@ const MyPurchasedModel = () => {
       {models.length === 0 ? (
         <div className="text-center ">You haven’t added the model yet.</div>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 md:gap-10">
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 md:gap-10">
           {models.map((model) => (
             <MyPurchasedModelCard
               key={model._id}

@@ -54,7 +54,7 @@ const AddModel = () => {
   };
   return (
     <div>
-      <div className="card border border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
+      <div className="card border border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl mt-3">
         <div className="card-body p-6 relative">
           <h2 className="text-3xl md:text-4xl font-bold mb-5 text-blue-700 text-center">
             Add New AI Model

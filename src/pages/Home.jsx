@@ -22,7 +22,7 @@ const Home = () => {
       </div>
       {/* Get Started Section */}
 
-      <div id="getStarted">
+      <div id="getStarted" className="my-10 ">
         <GetStarted></GetStarted>
       </div>
     </>

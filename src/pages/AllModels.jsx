@@ -70,7 +70,7 @@ const AllModels = () => {
         All Models{" "}
       </h2>
       {/* search */}
-      <div className=" flex  md:flex justify-around items-center gap-2 md:mb-10">
+      <div className=" flex mb-3 md:flex justify-around items-center gap-2 md:mb-10">
         <div></div>
         <div>
           <form onSubmit={handleSearch} className="flex gap-2">
@@ -117,7 +117,7 @@ const AllModels = () => {
       ) : models.length === 0 ? (
         <div className="text-center font-bold ">Not Found Model!</div>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 md:gap-10">
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 md:gap-10">
           {models.map((model) => (
             <ModelCard key={model._id} model={model}></ModelCard>
           ))}

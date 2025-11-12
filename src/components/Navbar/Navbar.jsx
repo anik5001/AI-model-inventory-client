@@ -98,11 +98,11 @@ const Navbar = () => {
         </div>
         <Link to="/" className="flex gap-2 items-center">
           <img
-            className="w-[60px] h-[60px] rounded-full"
+            className="hidden md:block w-[60px] h-[60px] rounded-full"
             src={logoImg}
             alt=""
           />
-          <p className=" text-3xl">
+          <p className="text-2xl sm:text-3xl">
             AI <span className="text-blue-600">Nexus</span>
           </p>
         </Link>

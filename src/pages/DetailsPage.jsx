@@ -125,74 +125,80 @@ const DetailsPage = () => {
   return loading ? (
     <CircularLoading></CircularLoading>
   ) : (
-    <div className="max-w-6xl mx-auto p-2 md:p-6 lg:p-8">
-      <div className="card bg-base-100 shadow-xl border border-gray-200 rounded-2xl overflow-hidden">
-        <div className="flex flex-col md:flex-row gap-8 p-2 md:p-8">
+    <div className="max-w-6xl mx-auto p-4 md:p-8">
+      <div className="bg-white shadow-xl border border-gray-200 rounded-2xl overflow-hidden transition-all hover:shadow-2xl duration-300">
+        <div className="flex flex-col md:flex-row gap-8 p-6 md:p-10 items-center md:items-start">
+          {/* Left Side Image */}
           <div className="shrink-0 w-full md:w-1/3">
             <img
               src={model.image}
-              alt=""
-              className="w-full object-cover rounded-xl shadow-md"
+              alt={model.name}
+              className="w-full h-auto rounded-xl object-cover shadow-md hover:scale-105 transition-transform duration-300"
             />
           </div>
 
-          <div className="flex flex-col justify-center space-y-4 w-full md:w-1/2">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
+          {/* Right Side Content */}
+          <div className="flex flex-col justify-center space-y-5 w-full md:w-2/3">
+            {/* Model Name */}
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 flex items-center gap-3">
               {model.name}
+              <span className="text-3xl text-indigo-400">✨</span>
             </h1>
 
+            {/* Badges */}
             <div className="flex flex-wrap gap-3">
-              <div className="badge badge-lg badge-outline badge-primary font-medium">
+              <span className="badge badge-lg bg-blue-100 text-blue-600 border border-blue-300 font-medium">
                 {model.framework}
-              </div>
-
-              <div className="badge badge-lg badge-outline badge-secondary font-medium">
+              </span>
+              <span className="badge badge-lg bg-pink-100 text-pink-600 border border-pink-300 font-medium">
                 {model.useCase}
-              </div>
-              <div className="badge badge-lg badge-outline badge-info font-medium">
+              </span>
+              <span className="badge badge-lg bg-cyan-100 text-cyan-700 border border-cyan-300 font-medium">
                 {model.dataset}
-              </div>
-
-              <div className="badge badge-lg badge-outline badge-success font-medium">
-                Purchased:{model.purchased}
-              </div>
+              </span>
+              <span className="badge badge-lg bg-green-100 text-green-700 border border-green-300 font-medium">
+                Purchased: {model.purchased}
+              </span>
             </div>
 
-            <p className="text-gray-600 leading-relaxed text-base md:text-lg">
+            {/* Description */}
+            <p className="text-gray-700 leading-relaxed text-base md:text-lg">
               {model.description}
             </p>
 
-            <div className="flex gap-1 justify-center md:justify-start mt-6">
+            {/* Buttons */}
+            <div className="flex flex-wrap gap-3 mt-4">
               <button
                 onClick={handlePurchase}
-                className="btn btn-primary rounded-full"
+                className="btn bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6"
               >
                 {loadingActionPurchased ? (
-                  <FadeLoader color="#0096FF" />
+                  <FadeLoader color="#fff" />
                 ) : (
-                  " Purchase Model"
+                  "Purchase Model"
                 )}
               </button>
+
               {user.email === model.createdBy && (
-                <div className="flex gap-1">
+                <>
                   <Link
                     to={`/update-model/${model._id}`}
-                    className="btn  btn-info rounded-full "
+                    className="btn bg-sky-500 hover:bg-sky-600 text-white rounded-full px-6"
                   >
                     Edit Model
                   </Link>
 
                   <button
                     onClick={handleDeleteModel}
-                    className="btn btn-secondary rounded-full "
+                    className="btn bg-rose-500 hover:bg-rose-600 text-white rounded-full px-6"
                   >
                     {loadingActionDelete ? (
-                      <FadeLoader color="#0096FF" />
+                      <FadeLoader color="#fff" />
                     ) : (
                       "Delete"
                     )}
                   </button>
-                </div>
+                </>
               )}
             </div>
           </div>

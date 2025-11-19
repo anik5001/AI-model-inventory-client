@@ -39,7 +39,6 @@ This frontend communicates with a Node.js + Express backend and provides a compl
 
 ### 1️⃣ Navigate to the client folder
 
-```sh
 cd client
 2️⃣ Install dependencies
 npm install

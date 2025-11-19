@@ -38,7 +38,7 @@ This frontend communicates with a Node.js + Express backend and provides a compl
 ## 🔧 Installation & Setup
 
 ### 1️⃣ Navigate to the client folder
-
+```
 cd client
 2️⃣ Install dependencies
 npm install
@@ -65,7 +65,7 @@ npm run dev
 Your application will be available at:
 
 http://localhost:5173
-
+```
 
 <img width="1796" height="890" alt="image" src="https://github.com/user-attachments/assets/4a47858f-cc38-4ac1-b481-2dc2e518759d" />
 <img width="1787" height="886" alt="image" src="https://github.com/user-attachments/assets/079058b8-3985-4be4-9315-2524a15e9241" />

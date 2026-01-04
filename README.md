@@ -27,3 +27,47 @@ This project integrates modern web technologies with database management to offe
 - **Utilities:** Firebase Authentication, SweetAlert2, React Hot Toast
 
 ---
+
+# 🧠 AI Model Inventory Manager — Client (Frontend)
+
+The **client-side** of the AI Model Inventory Manager built with React, Tailwind CSS, DaisyUI, Firebase Authentication, and Axios.  
+This frontend communicates with a Node.js + Express backend and provides a complete UI for managing and purchasing AI models.
+
+---
+
+## 🔧 Installation & Setup
+
+### 1️⃣ Navigate to the client folder
+```
+cd client
+2️⃣ Install dependencies
+npm install
+
+⚙️ Environment Variables
+
+Create a file named:
+
+.env.local
+
+
+###Add the following environment variables:
+
+VITE_apiKey=your_firebase_apiKey
+VITE_authDomain=your_authDomain
+VITE_projectId=your_projectId
+VITE_storageBucket=your_storageBucket
+VITE_messagingSenderId=your_senderId
+VITE_appId=your_appId
+▶️ Start the Development Server
+npm run dev
+
+
+Your application will be available at:
+
+http://localhost:5173
+```
+
+<img width="1796" height="890" alt="image" src="https://github.com/user-attachments/assets/4a47858f-cc38-4ac1-b481-2dc2e518759d" />
+<img width="1787" height="886" alt="image" src="https://github.com/user-attachments/assets/079058b8-3985-4be4-9315-2524a15e9241" />
+
+

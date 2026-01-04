@@ -117,7 +117,7 @@ const AllModels = () => {
       ) : models.length === 0 ? (
         <div className="text-center font-bold ">Not Found Model!</div>
       ) : (
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 md:gap-10">
+        <div className="grid gap-3 md:grid-cols-3 lg:grid-cols-4 md:gap-10">
           {models.map((model) => (
             <ModelCard key={model._id} model={model}></ModelCard>
           ))}

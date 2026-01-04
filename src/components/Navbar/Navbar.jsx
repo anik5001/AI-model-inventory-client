@@ -88,13 +88,6 @@ const Navbar = () => {
                 All Models
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/add-model">
-                {" "}
-                <ImBoxAdd />
-                Add Model
-              </NavLink>
-            </li>
           </ul>
         </div>
         <Link to="/" className="flex gap-2 items-center">
@@ -122,13 +115,6 @@ const Navbar = () => {
               {" "}
               <IoLogoModelS />
               All Models
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/add-model">
-              {" "}
-              <ImBoxAdd />
-              Add Model
             </NavLink>
           </li>
         </ul>
@@ -159,6 +145,13 @@ const Navbar = () => {
                 </p>
                 <p className="text-xs text-center">{user.email}</p>
               </div>
+              <li>
+                <NavLink to="/add-model">
+                  {" "}
+                  <ImBoxAdd />
+                  Add Model
+                </NavLink>
+              </li>
               <li className="mt-3 font-bold ">
                 <NavLink to="/my-purchased-model" className="justify-between">
                   My Purchased Model

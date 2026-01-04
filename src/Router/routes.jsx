@@ -11,6 +11,8 @@ import UpdateModelPage from "../pages/UpdateModelPage";
 import MyModels from "../pages/MyModels";
 import MyPurchasedModel from "../pages/MyPurchasedModel";
 import ErrorPage from "../pages/ErrorPage";
+import AboutPage from "../pages/About/AboutPage";
+import Contact from "../pages/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
         element: <AllModels></AllModels>,
 
         // loader: () => fetch("https://ai-model-inventory.vercel.app/models"),
+      },
+      {
+        path: "/about-page",
+        Component: AboutPage,
+      },
+      {
+        path: "/contact",
+        Component: Contact,
       },
       {
         path: "/add-model",

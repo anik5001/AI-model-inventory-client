@@ -8,6 +8,7 @@ import { GoHomeFill } from "react-icons/go";
 import { IoLogoModelS } from "react-icons/io";
 import { ImBoxAdd } from "react-icons/im";
 import { IoLogIn, IoLogOut } from "react-icons/io5";
+import { FaCircleInfo, FaEnvelope } from "react-icons/fa6";
 
 const Navbar = () => {
   const { user, loading, signOutFun } = use(AuthContext);
@@ -88,6 +89,20 @@ const Navbar = () => {
                 All Models
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/about-page">
+                {" "}
+                <FaCircleInfo className="text-lg" />
+                About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/contact">
+                {" "}
+                <FaEnvelope className="text-lg" />
+                Contact
+              </NavLink>
+            </li>
           </ul>
         </div>
         <Link to="/" className="flex gap-2 items-center">
@@ -115,6 +130,20 @@ const Navbar = () => {
               {" "}
               <IoLogoModelS />
               All Models
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/about-page">
+              {" "}
+              <FaCircleInfo className="text-lg" />
+              About
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact">
+              {" "}
+              <FaEnvelope className="text-lg" />
+              Contact
             </NavLink>
           </li>
         </ul>
